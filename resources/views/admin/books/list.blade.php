@@ -22,15 +22,6 @@
                     </div>
                 </form>
             </div>
-
-            <div>
-                <form action="/dashboard/book-management/search" method="GET">
-                    <div class="input-group mb-3 mt-2">
-                        <input class="form-control" type="date" id="expired_date" name="expired_date" placeholder="Cari nama produk" value="{{ request()->input('expired_date') }}">
-                        <input type="submit" class="btn btn-primary" value="Filter" style="border: 1px solid #D0D0D0;"/>
-                    </div>
-                </form>
-            </div>
         </div>
 
         <div class="row">
