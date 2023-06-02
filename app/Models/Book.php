@@ -10,6 +10,13 @@ class Book extends Model
     use HasFactory;
     protected $fillable = [
         'title',
+        'description',
+        'stock',
+        'total_pages',
+        'cover_image',
+        'category',
+        'author',
+        'publisher',
         'description'
     ];
 }

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->text('total_pages');
             $table->text('author');
             $table->text('publisher');
+            $table->text('category');
+            $table->text('stock');
             $table->timestamps();
         });
     }

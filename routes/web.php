@@ -34,12 +34,12 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardAdminController::class, 
 
 // book management
 Route::get('/dashboard/book-management', [App\Http\Controllers\BookController::class, 'index'])->name('book-management')->middleware(['role:admin']);
-Route::get('/dashboard/book-management/create', [App\Http\Controllers\DashboardAdminController::class, 'createBook'])->name('book-management')->middleware(['role:admin|karyawan']);
-Route::post('/dashboard/book-management/store', [App\Http\Controllers\DashboardAdminController::class, 'storeBook'])->name('book-store')->middleware(['role:admin|karyawan']);
-Route::get('/dashboard/book-management/delete/{product_id}', [App\Http\Controllers\DashboardAdminController::class, 'deleteBook'])->name('book-delete')->middleware(['role:admin|karyawan']);
-Route::get('/dashboard/book-management/search', [App\Http\Controllers\DashboardAdminController::class, 'searchBook'])->name('book-management')->middleware(['role:admin|karyawan']);
-Route::get('/dashboard/book-management/{product_id}', [App\Http\Controllers\DashboardAdminController::class, 'editBook'])->name('book-management')->middleware(['role:admin|karyawan']);
-Route::put('/dashboard/book-management/update/{product_id}', [App\Http\Controllers\DashboardAdminController::class, 'updateBook'])->name('book-management')->middleware(['role:admin|karyawan']);
+Route::get('/dashboard/book-management/create', [App\Http\Controllers\BookController::class, 'create'])->name('book-management')->middleware(['role:admin']);
+Route::post('/dashboard/book-management/store', [App\Http\Controllers\BookController::class, 'store'])->name('book-store')->middleware(['role:admin']);
+Route::get('/dashboard/book-management/delete/{book_id}', [App\Http\Controllers\BookController::class, 'destroy'])->name('book-delete')->middleware(['role:admin']);
+Route::get('/dashboard/book-management/search', [App\Http\Controllers\BookController::class, 'search'])->name('book-management')->middleware(['role:admin']);
+Route::get('/dashboard/book-management/{book_id}', [App\Http\Controllers\BookController::class, 'edit'])->name('book-management')->middleware(['role:admin']);
+Route::put('/dashboard/book-management/update/{book_id}', [App\Http\Controllers\BookController::class, 'update'])->name('book-management')->middleware(['role:admin']);
 
 // user management
 Route::get('/dashboard/user-management', [App\Http\Controllers\DashboardAdminController::class, 'getUsers'])->name('user-management')->middleware(['role:admin|karyawan']);
