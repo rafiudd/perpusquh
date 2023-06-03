@@ -43,7 +43,8 @@ Route::put('/dashboard/student-management/update/{student_id}', [App\Http\Contro
 Route::get('/dashboard/loan-management', [App\Http\Controllers\LoanController::class, 'index'])->name('loan-management')->middleware(['role:admin']);
 Route::get('/dashboard/loan-management/create', [App\Http\Controllers\LoanController::class, 'create'])->name('loan-management')->middleware(['role:admin']);
 Route::post('/dashboard/loan-management/store', [App\Http\Controllers\LoanController::class, 'store'])->name('loan-store')->middleware(['role:admin']);
-
+Route::get('/dashboard/loan-management/{loan_id}', [App\Http\Controllers\LoanController::class, 'edit'])->name('loan-management')->middleware(['role:admin']);
+Route::put('/dashboard/loan-management/update/{loan_id}', [App\Http\Controllers\LoanController::class, 'update'])->name('loan-management')->middleware(['role:admin']);
 
 // profile
 Route::get('/dashboard/profile', [App\Http\Controllers\ProfileController::class, 'admin'])->name('profile-admin')->middleware(['role:admin|karyawan']);
