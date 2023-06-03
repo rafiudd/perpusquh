@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('student_id')->unsigned();
             $table->string('status');
+            $table->string('note');
             $table->string('return_date');
             $table->timestamps();
-            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->index('student_id');
         });
     }

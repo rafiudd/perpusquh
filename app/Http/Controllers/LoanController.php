@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Book;
+use App\Models\Loan;
+use App\Models\LoanItem;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class LoanController extends Controller
 {
     public function index() {
-        $students = Student::paginate(8);
-
-        return view('admin.students.list', compact('students'));
+        $loans = Loan::with('student', 'loan_items')->paginate(8);
+        // dd($loans);
+        return view('admin.loans.list', compact('loans'));
     }
 
     public function destroy(Request $request) {
@@ -21,21 +24,39 @@ class StudentController extends Controller
     }
 
     public function create() {
-        return view('admin.students.create');
+        $students = Student::all();
+        $books = Book::all();
+
+        return view('admin.loans.create', compact('students', 'books'));
     }
 
     public function store(Request $request) {
-        $input = $request->all();
+        $loan = Loan::Create([
+            'student_id' => $request->student_id,
+            'status' => 'Sedang Dipinjam',
+            'note' => $request->note,
+            'return_date' => $request->return_date
+        ]);
 
-        Student::create($input);
-        return redirect('/dashboard/student-management');
+        for ($i=0; $i < count($request->book_id); $i++) { 
+            $book = Book::where('id', '=', $request->book_id[$i])->first();
+            $loan_items = LoanItem::Create([
+                'student_id' => $request->student_id,
+                'book_id' => $request->book_id[$i],
+                'book_title' => $book->title,
+                'loan_id' => $loan->id,
+                'quantity' => '1'
+            ]);
+        }
+
+        return redirect('/dashboard/loan-management');
     }
 
     public function edit(Request $request) {
         $student_id = $request->student_id;
         $student = Student::where('id', '=', $student_id)->first();
 
-        return view('admin.students.edit', compact('student'));
+        return view('admin.loans.edit', compact('student'));
     }
 
     public function update(Request $request) {

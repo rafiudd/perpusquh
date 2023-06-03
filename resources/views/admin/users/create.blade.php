@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 
-    <title>Apotek Lamganda</title>
+    <title>Perpustakaan Digital</title>
     <style>
         body {
             font-family: 'Inter', sans-serif;

@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('student_id')->unsigned();
             $table->bigInteger('book_id')->unsigned();
+            $table->string('book_title');
             $table->bigInteger('loan_id')->unsigned();
             $table->integer('quantity');
             $table->timestamps();
-            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->foreign('loan_id')->references('id')->on('loans')->onDelete('cascade');
             $table->index('student_id');
