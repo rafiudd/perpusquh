@@ -41,7 +41,7 @@
 
     <nav class="nav navbar fixed-top navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/dashboard') }}"><img width=160 src="https://res.cloudinary.com/sarjanalidi/image/upload/v1682090389/apotek/logo_2_olwzxq.png" alt="logo"></a>
+            <a class="navbar-brand" href="{{ url('/dashboard') }}"><img width=60 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

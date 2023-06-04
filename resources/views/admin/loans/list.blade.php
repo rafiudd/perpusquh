@@ -8,7 +8,7 @@
                 <p class="title-desc mt-1">Manajemen Peminjaman Buku SMP N 1 Nasional</p>
             </div>
             <div>
-            <a href="/dashboard/loan-management/create"><button class="btn btn-success">Tambah Peminjaman</button></a>
+            <a href="/dashboard/loan-management/create"><button class="btn btn-success">Tambah</button></a>
 
             </div>
         </div>
@@ -43,11 +43,19 @@
                             <td class="align-middle">{{ $loan['student']['name'] }}</td>
                             <td class="align-middle">{{ $loan['student']['nisn'] }}</td>
                             <td class="align-middle">{{ $loan['loan_items'][0]['book_title'] }}</td>
-                            <td class="align-middle">{{ $loan['status'] }}</td>
+                            @if($loan['status'] == 'Telah Dikembalikan')
+                                <td class="align-middle"><button disabled class="btn btn-outline-success">{{ $loan['status'] }}</button></td>
+                            @else
+                                <td class="align-middle"><button disabled class="btn btn-outline-danger">{{ $loan['status'] }}</button></td>
+                            @endif
                             <td class="align-middle">{{ $loan['return_date'] }}</td>
                             <td class="text-center">
-                                <a href="/dashboard/loan-management/approve/{{ $loan['id'] }}"><button class="btn btn-success">Telah Dikembalikan</button></a>
-                                <a href="/dashboard/loan-management/{{ $loan['id'] }}"><button class="btn btn-primary">Edit</button></a>
+                                @if($loan['status'] == 'Sedang Dipinjam')
+                                    <a href="/dashboard/loan-management/{{ $loan['id'] }}"><button class="btn btn-primary">Lihat Detail</button></a>
+                                    <a href="/dashboard/loan-management/approve/{{ $loan['id'] }}"><button class="btn btn-success">Telah Dikembalikan</button></a>
+                                @else
+                                    <a href="/dashboard/loan-management/{{ $loan['id'] }}"><button class="btn btn-primary">Lihat Detail</button></a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

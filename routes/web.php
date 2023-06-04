@@ -19,7 +19,7 @@ Route::post('logout', [App\Http\Controllers\CustomAuthController::class, 'signOu
 
 // admin route
 // order management
-Route::get('/dashboard', [App\Http\Controllers\DashboardAdminController::class, 'index'])->middleware(['role:admin|karyawan']);
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->middleware(['role:admin']);
 
 // book management
 Route::get('/dashboard/book-management', [App\Http\Controllers\BookController::class, 'index'])->name('book-management')->middleware(['role:admin']);
@@ -45,6 +45,7 @@ Route::get('/dashboard/loan-management/create', [App\Http\Controllers\LoanContro
 Route::post('/dashboard/loan-management/store', [App\Http\Controllers\LoanController::class, 'store'])->name('loan-store')->middleware(['role:admin']);
 Route::get('/dashboard/loan-management/{loan_id}', [App\Http\Controllers\LoanController::class, 'edit'])->name('loan-management')->middleware(['role:admin']);
 Route::put('/dashboard/loan-management/update/{loan_id}', [App\Http\Controllers\LoanController::class, 'update'])->name('loan-management')->middleware(['role:admin']);
+Route::get('/dashboard/loan-management/approve/{loan_id}', [App\Http\Controllers\LoanController::class, 'approve'])->name('loan-approve')->middleware(['role:admin']);
 
 // profile
 Route::get('/dashboard/profile', [App\Http\Controllers\ProfileController::class, 'admin'])->name('profile-admin')->middleware(['role:admin|karyawan']);

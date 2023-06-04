@@ -12,7 +12,7 @@ class LoanController extends Controller
 {
     public function index() {
         $loans = Loan::with('student', 'loan_items')->paginate(8);
-        // dd($loans);
+
         return view('admin.loans.list', compact('loans'));
     }
 
@@ -53,10 +53,11 @@ class LoanController extends Controller
     }
 
     public function edit(Request $request) {
-        $student_id = $request->student_id;
-        $student = Student::where('id', '=', $student_id)->first();
+        $loan_id = $request->loan_id;
+        $loans = Loan::with('student')->where('id', '=', $loan_id)->first();
+        $loan_items = LoanItem::with('book')->where('loan_id', '=', $loan_id)->get();
 
-        return view('admin.loans.edit', compact('student'));
+        return view('admin.loans.edit', compact('loans', 'loan_items'));
     }
 
     public function update(Request $request) {
@@ -77,4 +78,13 @@ class LoanController extends Controller
 
         return view('admin.students.list', compact('students'));
 	}
+
+    public function approve(Request $request) {
+        $loan_id = $request->loan_id;
+
+        Loan::find($loan_id)->update([
+            'status' => 'Telah Dikembalikan'
+        ]);
+        return redirect('/dashboard/loan-management');
+    }
 }

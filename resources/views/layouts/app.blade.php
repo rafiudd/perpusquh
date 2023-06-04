@@ -39,7 +39,9 @@
     <body>
 
 
-    <div class="header">
+    <div class="header text-center">
+        <img width=120 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo">
+
         <h4 class="text-center mt-2">Sistem Manajemen Perpustakaan</h4>
         <h5 class="text-center mb-2">SMP Negeri 1 Indonesia</h5>
     </div>
