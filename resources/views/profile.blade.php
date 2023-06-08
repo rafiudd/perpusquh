@@ -61,10 +61,10 @@
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" class="form-control" id="email" value="{{ $user['email'] }}" disabled>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="phone" class="form-label">No HP</label>
                         <input type="text" name="phone" class="form-control" id="phone" value="{{ $user['phone'] }}" disabled>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
                         <input type="text" class="form-control" id="role" value="{{ $user['role'] }}" disabled>

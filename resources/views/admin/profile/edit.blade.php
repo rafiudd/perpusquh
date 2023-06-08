@@ -59,7 +59,7 @@
                         <label for="email" class="form-label">Email</label>
                         <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" name="email" class="form-control" id="email" value="{{ $user['email'] }}">
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="phone" class="form-label">No HP</label>
                         <input type="text" name="phone" class="form-control" id="phone" value="{{ $user['phone'] }}" title="gunakan nomor yang valid (08xx) atau (628xx)" pattern="(08|62)\d{10,11}"
                                     oninput="
@@ -70,7 +70,7 @@
                                             this.reportValidity();
                                         }
                                     " >
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
                         <input type="text" class="form-control" id="role" value="{{ $user['role'] }}" disabled>
