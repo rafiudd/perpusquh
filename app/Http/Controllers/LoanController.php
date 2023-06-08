@@ -70,13 +70,19 @@ class LoanController extends Controller
 
     public function search(Request $request) {
 		$keyword = $request->keyword;
-        $students = Student::paginate(8);
+        $loans = Loan::with('student', 'loan_items')->paginate(8);
+        $users = Student::orderBy('created_at', 'DESC')->where('name', 'LIKE', "%".$keyword."%")->get();
+        $user_id = array();
 
-        if($keyword) {
-            $students = Student::where('name', 'LIKE', "%".$keyword."%")->orWhere('nisn', 'LIKE', "%".$keyword."%")->paginate(8);
+        foreach ($users as $user) {
+            array_push($user_id, $user->id);
         }
 
-        return view('admin.students.list', compact('students'));
+        if($keyword) {
+            $loans = Loan::whereIn('student_id', $user_id)->with('student', 'loan_items')->paginate(8);
+        }
+
+        return view('admin.loans.list', compact('loans'));
 	}
 
     public function approve(Request $request) {

@@ -43,6 +43,7 @@ Route::put('/dashboard/student-management/update/{student_id}', [App\Http\Contro
 Route::get('/dashboard/loan-management', [App\Http\Controllers\LoanController::class, 'index'])->name('loan-management')->middleware(['role:admin']);
 Route::get('/dashboard/loan-management/create', [App\Http\Controllers\LoanController::class, 'create'])->name('loan-management')->middleware(['role:admin']);
 Route::post('/dashboard/loan-management/store', [App\Http\Controllers\LoanController::class, 'store'])->name('loan-store')->middleware(['role:admin']);
+Route::get('/dashboard/loan-management/search', [App\Http\Controllers\LoanController::class, 'search'])->name('loan-management')->middleware(['role:admin']);
 Route::get('/dashboard/loan-management/{loan_id}', [App\Http\Controllers\LoanController::class, 'edit'])->name('loan-management')->middleware(['role:admin']);
 Route::put('/dashboard/loan-management/update/{loan_id}', [App\Http\Controllers\LoanController::class, 'update'])->name('loan-management')->middleware(['role:admin']);
 Route::get('/dashboard/loan-management/approve/{loan_id}', [App\Http\Controllers\LoanController::class, 'approve'])->name('loan-approve')->middleware(['role:admin']);
