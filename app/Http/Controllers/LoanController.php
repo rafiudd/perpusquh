@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class LoanController extends Controller
 {
     public function index() {
-        $loans = Loan::with('student', 'loan_items')->paginate(8);
+        $loans = Loan::with('student', 'loan_items')->orderBy('updated_at', 'DESC')->paginate(8);
 
         return view('admin.loans.list', compact('loans'));
     }
@@ -24,8 +24,8 @@ class LoanController extends Controller
     }
 
     public function create() {
-        $students = Student::all();
-        $books = Book::all();
+        $students = Student::orderBy('name', 'ASC')->get();
+        $books = Book::orderBy('title', 'ASC')->get();
 
         return view('admin.loans.create', compact('students', 'books'));
     }
@@ -46,6 +46,11 @@ class LoanController extends Controller
                 'book_title' => $book->title,
                 'loan_id' => $loan->id,
                 'quantity' => '1'
+            ]);
+
+
+            Book::find($request->book_id[$i])->update([
+                'stock' => $book->stock - 1
             ]);
         }
 
@@ -87,6 +92,15 @@ class LoanController extends Controller
 
     public function approve(Request $request) {
         $loan_id = $request->loan_id;
+        $loan_items = LoanItem::where('loan_id', '=', $loan_id)->get();
+
+        foreach ($loan_items as $loan_item) {
+            $book = Book::where('id', '=', $loan_item->book_id)->first();
+
+            Book::find($loan_item->book_id)->update([
+                'stock' => $book->stock + 1
+            ]);
+        }
 
         Loan::find($loan_id)->update([
             'status' => 'Telah Dikembalikan'

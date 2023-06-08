@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     public function index() {
-        $books = Book::paginate(8);
+        $books = Book::orderBy('title', 'ASC')->paginate(8);
 
         return view('admin.books.list', compact('books'));
     }

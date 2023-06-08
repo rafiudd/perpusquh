@@ -33,6 +33,7 @@
                         <th scope="col">Penulis</th>
                         <th scope="col">Penerbit</th>
                         <th scope="col">Jumlah Halaman</th>
+                        <th scope="col">Stok</th>
                         <th class="text-center" scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -43,6 +44,7 @@
                             <td class="align-middle">{{ $book['author'] }}</td>
                             <td class="align-middle">{{ $book['publisher'] }}</td>
                             <td class="align-middle">{{ $book['total_pages'] }}</td>
+                            <td class="align-middle">{{ $book['stock'] }}</td>
                             <td class="text-center">
                                 <a href="/dashboard/book-management/delete/{{ $book['id'] }}"><button class="btn btn-danger">Delete</button></a>
                                 <a href="/dashboard/book-management/{{ $book['id'] }}"><button class="btn btn-primary">Edit</button></a>
