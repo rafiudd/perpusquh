@@ -7,11 +7,30 @@ use App\Models\Book;
 use App\Models\Loan;
 use App\Models\LoanItem;
 use Illuminate\Http\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class LoanController extends Controller
 {
     public function index() {
         $loans = Loan::with('student', 'loan_items')->orderBy('updated_at', 'DESC')->paginate(8);
+
+        foreach ($loans as $loan) {
+            $currentTimestamp = time();
+            $createdTimestamp = strtotime($loan['return_date']);
+            $timeDifference = $createdTimestamp - $currentTimestamp;
+
+            $days = floor($timeDifference / 86400);
+            $timeDifference = $days . " hari ";
+            if ($days < 0) {
+                $timeDifference =  "Telat " . $days . " hari ";
+            }
+           
+            $loan['selisih'] = $timeDifference;
+
+            if($loan['status'] == 'Telah Dikembalikan') {
+                $loan['selisih'] = '-';
+            }
+        }
 
         return view('admin.loans.list', compact('loans'));
     }
@@ -107,4 +126,10 @@ class LoanController extends Controller
         ]);
         return redirect('/dashboard/loan-management');
     }
+
+    public function download()
+	{
+        return (new FastExcel(Loan::with('student', 'loan_items')->orderBy('updated_at', 'DESC')->get()))->download('report.xlsx');
+
+	}
 }
