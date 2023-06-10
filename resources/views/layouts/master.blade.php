@@ -18,7 +18,7 @@
             .nav:first-child {
                 box-shadow: 4px 4px 50px rgba(145, 145, 145, 0.2);
                 padding-bottom: 20px !important;
-                padding-top: 20px !important;
+                padding-top: 10px !important;
                 background: white;
             }
 
@@ -38,18 +38,20 @@
         </style>
     </head>
     <body>
-
     <nav class="nav navbar fixed-top navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/dashboard') }}"><img width=60 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarText">
+            <div class="d-flex flex-column flex-wrap collapse navbar-collapse" id="navbarText">
                 @if (Route::has('login'))
                     @auth
-
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav row mb-3">
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="{{ url('/dashboard') }}"><img width=80 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo"></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('book-management') ? 'active' : ''}} "  aria-current="page" href="{{ url('/dashboard/book-management') }}">MANAJEMEN BUKU</a>
                         </li>
@@ -74,6 +76,7 @@
                             </ul>
                         </li>
                     </ul>
+
                     @else
                     <div class="ms-auto">
                         <a style="text-decoration: none; margin-right: 20px; color: black;" href="{{ url('/register') }}"><button class="btn-secondary">REGISTER</button></a>

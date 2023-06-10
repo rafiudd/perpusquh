@@ -104,6 +104,23 @@ class LoanController extends Controller
 
         if($keyword) {
             $loans = Loan::whereIn('student_id', $user_id)->with('student', 'loan_items')->paginate(8);
+            foreach ($loans as $loan) {
+                $currentTimestamp = time();
+                $createdTimestamp = strtotime($loan['return_date']);
+                $timeDifference = $createdTimestamp - $currentTimestamp;
+    
+                $days = floor($timeDifference / 86400);
+                $timeDifference = $days . " hari ";
+                if ($days < 0) {
+                    $timeDifference =  "Telat " . $days . " hari ";
+                }
+               
+                $loan['selisih'] = $timeDifference;
+    
+                if($loan['status'] == 'Telah Dikembalikan') {
+                    $loan['selisih'] = '-';
+                }
+            }
         }
 
         return view('admin.loans.list', compact('loans'));
