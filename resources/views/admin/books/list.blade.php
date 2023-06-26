@@ -1,18 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="title">
-                <h1 class="title-text">Manajemen Buku</h1>
-                <p class="title-desc mt-1">Manajemen Buku SMP N 1 Nasional</p>
-            </div>
-            <div>
-            <a href="/dashboard/book-management/create"><button class="btn btn-success">Tambah Buku</button></a>
-
-            </div>
-        </div>
-        
+    <div class="container pt-5">
         <div class="d-flex justify-content-between align-items-center">
             <div class="col-md-6">
                 <form action="/dashboard/book-management/search" method="GET">
@@ -21,6 +10,10 @@
                         <input type="submit" class="btn btn-outline-secondary" value="Cari" style="border: 1px solid #D0D0D0;"/>
                     </div>
                 </form>
+            </div>
+            <div>
+            <a href="/dashboard/book-management/create"><button class="btn btn-success">Tambah Buku</button></a>
+
             </div>
         </div>
 

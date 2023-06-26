@@ -44,7 +44,7 @@ class LoanController extends Controller
 
     public function create() {
         $students = Student::orderBy('name', 'ASC')->get();
-        $books = Book::orderBy('title', 'ASC')->get();
+        $books = Book::where('stock', '>', '0')->orderBy('title', 'ASC')->get();
 
         return view('admin.loans.create', compact('students', 'books'));
     }

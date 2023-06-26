@@ -1,10 +1,8 @@
 @extends('layouts.master') @section('content') <head>
-<div class="container">
+<div class="container pt-5">
     <div class="d-flex justify-content-between align-items-center">
         <div class="title">
             <a href="/dashboard/book-management" class="btn btn-outline-danger mb-3"> <- Kembali</a>
-            <h1 class="title-text">Tambah Buku</h1>
-            <p class="title-desc mt-1">Menambahkan Buku di SMPN 1 Nasional</p>
         </div>
     </div>
     <form method="POST" action="/dashboard/book-management/store" enctype="multipart/form-data">

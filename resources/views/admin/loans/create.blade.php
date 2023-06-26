@@ -5,12 +5,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-<div class="container">
+<div class="container pt-5">
     <div class="d-flex justify-content-between align-items-center">
         <div class="title">
             <a href="/dashboard/loan-management" class="btn btn-outline-danger mb-3"> <- Kembali</a>
-            <h1 class="title-text">Tambah Peminjaman</h1>
-            <p class="title-desc mt-1">Menambahkan Peminjaman Buku di SMPN 1 Nasional</p>
         </div>
     </div>
     <form method="POST" action="/dashboard/loan-management/store" enctype="multipart/form-data">

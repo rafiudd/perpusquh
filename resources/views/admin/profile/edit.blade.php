@@ -38,13 +38,10 @@
             }
         </style>
     </head>
-    <div class="container col-4">
+    <div class="container col-4 pt-5">
         <div class="d-flex justify-content-between align-items-center">
             <div class="title">
                 <a href="/dashboard/profile" class="btn btn-outline-danger mb-3"> <- Kembali</a>
-
-                <h1 class="title-text mt-3">Edit Profil aksdna</h1>
-                <p class="title-desc mt-1">Profil pribadi anda</p>
             </div>
         </div>
 

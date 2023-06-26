@@ -4,8 +4,8 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="title">
             <a href="/dashboard/loan-management" class="btn btn-outline-danger mb-3"> <- Kembali</a>
-            <h1 class="title-text">Edit Peminjaman</h1>
-            <p class="title-desc mt-1">Mengedit Peminjaman di SMPN 1 Nasional</p>
+            <!-- <h1 class="title-text">Edit Peminjaman</h1>
+            <p class="title-desc mt-1">Mengedit Peminjaman di SMPN 1 Nasional</p> -->
         </div>
         <div>
             @if($loans['status'] == 'Sedang Dipinjam')

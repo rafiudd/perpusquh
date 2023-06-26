@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
+<div class="container pt-5">
     <div class="d-flex justify-content-between align-items-center">
         <div class="title">
             <a href="/dashboard/student-management" class="btn btn-outline-danger mb-3"> <- Kembali</a>
-            <h1 class="title-text">Edit Siswa</h1>
-            <p class="title-desc mt-1">Mengedit Siswa di SMPN 1 Nasional</p>
+            <!-- <h1 class="title-text">Edit Siswa</h1>
+            <p class="title-desc mt-1">Mengedit Siswa di SMPN 1 Nasional</p> -->
         </div>
     </div>
     <form method="POST" action="/dashboard/student-management/update/{{ $student->id }}" enctype="multipart/form-data">

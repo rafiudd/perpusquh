@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" integrity="sha256-R91pD48xW+oHbpJYGn5xR0Q7tMhH4xOrWn1QqMRINtA=" crossorigin="anonymous">
         <title>Perpustakaan Digital</title>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
         <style>
             body {
                 font-family: 'Inter', sans-serif;
@@ -34,6 +35,14 @@
                 background: white;
                 width: 100%;
             }
+            h4 {
+                font-family: 'Dancing Script', cursive;
+                font-size: 3rem;
+            }
+            p {
+                font-family: 'Dancing Script', cursive;
+                font-size: 1.5rem;
+            }
         </style>
     </head>
     <body>
@@ -42,6 +51,7 @@
     <div class="header text-center">
         <img width=80 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo">
         <h4 class="text-center mt-4">SD Negeri 1 Wlahar</h4>
+        <p class="text-center">Jalan Raya Wangon Utara</p>
     </div>
 
     <main class="break-nav">

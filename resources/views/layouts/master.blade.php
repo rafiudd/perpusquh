@@ -35,6 +35,15 @@
                 color: #848484;
                 font-size: 1.1em;
             }
+            .bordered {
+                width: 100%;
+                border: 0.3px solid #29291e;
+                margin-bottom: 8px;
+            }
+            h5 {
+                background: '#29291e';
+                color: 'white';
+            }
         </style>
     </head>
     <body>
@@ -49,6 +58,16 @@
                     <ul class="navbar-nav row mb-3">
                         <li class="nav-item">
                             <a class="navbar-brand" href="{{ url('/dashboard') }}"><img width=80 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo"></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link"><h5>SISTEM INFORMASI PERPUSTAKAAN SD NEGERI 2 WLAHAR</h5></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mx-auto bordered">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link"><h5>SISTEM INFORMASI PERPUSTAKAAN SD NEGERI 2 WLAHAR</h5></a> -->
                         </li>
                     </ul>
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -87,6 +106,7 @@
             </div>
         </div>
     </nav>
+    
 
     <main class="break-nav">
         @yield('content')
