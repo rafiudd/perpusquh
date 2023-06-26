@@ -37,7 +37,7 @@
             }
             .bordered {
                 width: 100%;
-                border: 0.3px solid #29291e;
+                border: 0.3px solid #6c757d !important;
                 margin-bottom: 8px;
             }
             h5 {
