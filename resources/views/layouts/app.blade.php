@@ -16,7 +16,7 @@
                 font-family: 'Inter', sans-serif;
             }
 
-            .nav {
+            /* .nav {
                 box-shadow: 4px 4px 50px rgba(145, 145, 145, 0.2);
                 padding-bottom: 20px !important;
                 padding-top: 20px !important;
@@ -34,7 +34,7 @@
                 padding-top: 20px !important;
                 background: white;
                 width: 100%;
-            }
+            } */
             h4 {
                 font-family: 'Dancing Script', cursive;
                 font-size: 3rem;
@@ -48,13 +48,26 @@
     <body>
 
 
-    <div class="header text-center">
+    <!-- <div class="header text-center">
         <img width=80 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo">
         <h4 class="text-center mt-4">SD Negeri 1 Wlahar</h4>
         <p class="text-center">Jalan Raya Wangon Utara</p>
-    </div>
+    </div> -->
+    <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img width=80 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo">
+        <span class="fs-5">Sistem Informasi Perpustakaan <br> SDN 2 Wlahar</span>
+      </a>
 
-    <main class="break-nav">
+      <ul class="nav nav-pills justify-content-center align-items-center">
+        <li class="nav-item"><a href="/login" class="nav-link active" aria-current="page">Login</a></li>
+      </ul>
+    </header>
+  </div>
+
+
+    <main class="">
         @yield('content')
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>

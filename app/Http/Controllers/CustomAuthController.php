@@ -7,6 +7,7 @@ use Hash;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Book;
 
 class CustomAuthController extends Controller
 {
@@ -88,5 +89,11 @@ class CustomAuthController extends Controller
     public function notFoundAdmin()
     {
         return view('admin.404');
+    }
+
+    public function welcome() {
+        $books = Book::orderBy('title', 'ASC')->paginate(8);
+
+        return view('welcome', compact('books'));
     }
 }

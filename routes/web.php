@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('', [App\Http\Controllers\CustomAuthController::class, 'index'])->name('login');
+Route::get('', [App\Http\Controllers\CustomAuthController::class, 'welcome'])->name('welcome');
+Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [App\Http\Controllers\CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 Route::post('logout', [App\Http\Controllers\CustomAuthController::class, 'signOut'])->name('logout');
 
