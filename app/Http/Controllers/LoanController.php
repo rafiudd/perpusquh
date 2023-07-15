@@ -146,7 +146,44 @@ class LoanController extends Controller
 
     public function download()
 	{
-        return (new FastExcel(Loan::with('student', 'loan_items')->orderBy('updated_at', 'DESC')->get()))->download('report.xlsx');
+        $data = Loan::with('student', 'loan_items')->orderBy('updated_at', 'DESC')->get();
+        foreach ($data as $loan) {
+            $currentTimestamp = time();
+            $createdTimestamp = strtotime($loan['return_date']);
+            $timeDifference = $createdTimestamp - $currentTimestamp;
+
+            $days = floor($timeDifference / 86400);
+            $timeDifference = $days . " hari ";
+            if ($days < 0) {
+                $timeDifference =  "Telat " . $days . " hari ";
+            }
+           
+            $loan['selisih'] = $timeDifference;
+
+            if($loan['status'] == 'Telah Dikembalikan') {
+                $loan['selisih'] = '-';
+            }
+        }
+
+        $list = array();
+        for ($i=0; $i < count($data); $i++) { 
+            $ids = [];
+
+            foreach ($data[$i]['loan_items'] as $item) {
+                $ids[] = $item['book_title'];
+            }
+
+            array_push($list, [
+                'id' => $data[$i]['id'],
+                'nama peminjam' => $data[$i]['student']['name'],
+                'buku yang dipinjam' => implode(', ', $ids),
+                'nisn' => $data[$i]['student']['nisn'],
+                'status' => $data[$i]['status'],
+                'jangka waktu' => $data[$i]['selisih'],
+                'tanggal pengembalian' => $data[$i]['return_date']
+            ]);
+        }
+        return (new FastExcel($list))->download('report.xlsx');
 
 	}
 }

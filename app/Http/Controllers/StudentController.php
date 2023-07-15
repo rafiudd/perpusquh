@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class StudentController extends Controller
 {
@@ -56,4 +57,24 @@ class StudentController extends Controller
 
         return view('admin.students.list', compact('students'));
 	}
+
+    public function import(Request $request) {
+        $file = $request->file('file');
+        // dd($file->getClientOriginalName());
+        		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_siswa', $nama_file);
+
+        $users = (new FastExcel)->import(public_path('/file_siswa/'.$nama_file), function ($line) {
+            return Student::create([
+                'name' => $line['nama'],
+                'nisn' => $line['nisn'],
+                'class' => $line['kelas']
+            ]);
+        });
+
+        return redirect("/dashboard/student-management");
+    }
 }

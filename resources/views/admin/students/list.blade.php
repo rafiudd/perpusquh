@@ -11,9 +11,17 @@
                         <input type="submit" class="btn btn-outline-secondary" value="Cari" style="border: 1px solid #D0D0D0;"/>
                     </div>
                 </form>
+                <a href="/dashboard/student-management/create"><button class="btn btn-success">Tambah Siswa</button></a>
+
             </div>
             <div>
-             <a href="/dashboard/student-management/create"><button class="btn btn-success">Tambah Siswa</button></a>
+            <form method="post" action="/dashboard/student-management/import" enctype="multipart/form-data">
+                @csrf
+
+                <input required class="form-control" type="file" accept=".xls,.xlsx" id="file" name="file">
+                <button type="submit" class=" mt-3 btn btn-outline-success">Import Excel</button>
+            </form>
+            
             </div>
         </div>
 

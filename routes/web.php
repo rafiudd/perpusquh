@@ -32,6 +32,7 @@ Route::put('/dashboard/book-management/update/{book_id}', [App\Http\Controllers\
 
 // user management
 Route::get('/dashboard/student-management', [App\Http\Controllers\StudentController::class, 'index'])->name('student-management')->middleware(['role:admin']);
+Route::post('/dashboard/student-management/import', [App\Http\Controllers\StudentController::class, 'import'])->name('student-management')->middleware(['role:admin']);
 Route::get('/dashboard/student-management/create', [App\Http\Controllers\StudentController::class, 'create'])->name('student-management')->middleware(['role:admin']);
 Route::post('/dashboard/student-management/store', [App\Http\Controllers\StudentController::class, 'store'])->name('student-store')->middleware(['role:admin']);
 Route::get('/dashboard/student-management/delete/{student_id}', [App\Http\Controllers\StudentController::class, 'destroy'])->name('student-delete')->middleware(['role:admin']);
