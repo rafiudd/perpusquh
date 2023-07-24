@@ -3,7 +3,7 @@
 @section('content')
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" /> -->
     <div class="container pt-5">
-        <h1>Pencarian Koleksi Buku</h1>
+        <h2>Pencarian Koleksi Buku</h2>
 
         <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="col-md-6">

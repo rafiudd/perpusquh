@@ -35,6 +35,13 @@
                 background: white;
                 width: 100%;
             } */
+            input {
+                border-radius: 4px;
+                border: 1px solid grey;
+                height: 40px;
+                padding-left: 15px;
+                width: 250px;
+            }
             h4 {
                 font-family: 'Dancing Script', cursive;
                 font-size: 3rem;
@@ -61,7 +68,19 @@
       </a>
 
       <ul class="nav nav-pills justify-content-center align-items-center">
-        <li class="nav-item"><a href="/login" class="nav-link active" aria-current="page">Login</a></li>
+          <!-- <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus> -->
+          <!-- <div class="input-group"> -->
+            <!-- <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"> -->
+            <!-- <span id="eyePw" class="bi bi-eye-slash input-group-text" id="togglePassword" onclick="showPassword()"></span> -->
+        <!-- </div> -->
+        <li class="nav-item">
+            <form action="{{ route('login.custom') }}" method="post">
+                @csrf
+                <input required placeholder="masukan email" type="text" name="email" id="">
+                <input required placeholder="masukan password" type="password" name="password" id="">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </li>
       </ul>
     </header>
   </div>
