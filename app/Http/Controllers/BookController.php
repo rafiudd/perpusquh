@@ -73,4 +73,15 @@ class BookController extends Controller
 
         return view('admin.books.list', compact('books'));
 	}
+
+    public function searchPublic(Request $request) {
+		$keyword = $request->keyword;
+        $books = Book::paginate(8);
+
+        if($keyword) {
+            $books = Book::where('title', 'LIKE', "%".$keyword."%")->orWhere('author', 'LIKE', "%".$keyword."%")->orWhere('publisher', 'LIKE', "%".$keyword."%")->paginate(8);
+        }
+
+        return view('welcome', compact('books'));
+	}
 }

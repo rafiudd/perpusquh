@@ -28,10 +28,6 @@ class Role
 
                 return redirect()->to(route('404admin'));
             }
-        } else {
-            if(in_array('admin', $roles)) {
-                return redirect()->to(route('login'));
-            }
         }
         return $next($request);
     }

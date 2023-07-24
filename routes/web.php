@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('', [App\Http\Controllers\CustomAuthController::class, 'welcome'])->name('welcome');
+Route::get('/search', [App\Http\Controllers\BookController::class, 'searchPublic'])->name('book-management');
 Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [App\Http\Controllers\CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 Route::post('logout', [App\Http\Controllers\CustomAuthController::class, 'signOut'])->name('logout');

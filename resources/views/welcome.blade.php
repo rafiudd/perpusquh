@@ -7,10 +7,10 @@
 
         <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="col-md-6">
-                <form action="/dashboard/book-management/search" method="GET">
+                <form action="/search" method="GET">
                     <div class="input-group mb-3 mt-2">
                         <input class="i-search" type="text" name="keyword" placeholder="Cari judul buku / penulis / penerbit" value="{{ request()->input('keyword') }}">
-                        <input type="submit" class="btn btn-outline-secondary" value="Cari" style="border: 1px solid #D0D0D0;"/>
+                        <input type="submit" class="btn btn-outline-secondary" value="Cari" style="border: 1px solid #D0D0D0;height: 50px !important; width: 70px;"/>
                     </div>
                 </form>
             </div>

@@ -78,7 +78,7 @@
                 @csrf
                 <input required placeholder="masukan email" type="text" name="email" id="">
                 <input required placeholder="masukan password" type="password" name="password" id="">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button name="login" id="login" type="submit" class="btn btn-primary">Login</button>
             </form>
         </li>
       </ul>
