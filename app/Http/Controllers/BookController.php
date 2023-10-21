@@ -26,14 +26,14 @@ class BookController extends Controller
 
     public function store(Request $request) {
         $input = $request->all();
-  
+
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['cover_image'] = "/images/$profileImage";
         }
-    
+
         Book::create($input);
         return redirect('/dashboard/book-management');
     }
@@ -58,7 +58,7 @@ class BookController extends Controller
         } else {
             unset($input['cover_image']);
         }
-        
+
         Book::find($book_id)->update($input);
         return redirect("/dashboard/book-management");
     }
@@ -82,6 +82,6 @@ class BookController extends Controller
             $books = Book::where('title', 'LIKE', "%".$keyword."%")->orWhere('author', 'LIKE', "%".$keyword."%")->orWhere('publisher', 'LIKE', "%".$keyword."%")->paginate(8);
         }
 
-        return view('welcome', compact('books'));
+        return view('search', compact('books'));
 	}
 }

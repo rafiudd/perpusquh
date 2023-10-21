@@ -74,12 +74,14 @@
             <!-- <span id="eyePw" class="bi bi-eye-slash input-group-text" id="togglePassword" onclick="showPassword()"></span> -->
         <!-- </div> -->
         <li class="nav-item">
-            <form action="{{ route('login.custom') }}" method="post">
-                @csrf
-                <input required placeholder="masukan email" type="text" name="email" id="">
-                <input required placeholder="masukan password" type="password" name="password" id="">
-                <button name="login" id="login" type="submit" class="btn btn-primary">Login</button>
-            </form>
+            {{-- <form action="{{ route('login.custom') }}" method="post"> --}}
+                {{-- @csrf --}}
+                {{-- <input required placeholder="masukan email" type="text" name="email" id=""> --}}
+                {{-- <input required placeholder="masukan password" type="password" name="password" id=""> --}}
+                <a href="/login">
+                    <button name="login" id="login" type="submit" class="btn btn-primary mb-1">Login</button>
+                </a>
+            {{-- </form> --}}
         </li>
       </ul>
     </header>

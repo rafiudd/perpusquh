@@ -37,7 +37,7 @@
             }
             .bordered {
                 width: 100%;
-                border: 0.3px solid #6c757d !important;
+                border: 0.3px solid #dadada !important;
                 margin-bottom: 8px;
             }
             h5 {
@@ -80,7 +80,7 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('loan-management') ? 'active' : ''}}" href="/dashboard/loan-management">MANAJEMEN PEMINJAMAN</a>
                         </li>
-                       
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ request()->routeIs('profile-admin') ? 'active' : ''}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-transform: uppercase;">
                                 {{ auth()->user()->name }}
@@ -106,7 +106,7 @@
             </div>
         </div>
     </nav>
-    
+
 
     <main class="break-nav">
         @yield('content')
