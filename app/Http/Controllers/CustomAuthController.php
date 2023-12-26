@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Hash;
 use Session;
 use App\Models\User;
+use App\Models\LoanItem;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 
@@ -95,7 +96,12 @@ class CustomAuthController extends Controller
 
     public function welcome() {
         $books = Book::orderBy('title', 'ASC')->paginate(8);
+        $mostLoanedBook = LoanItem::select('book_id', 'book_title', \DB::raw('COUNT(loan_id) as loan_count'))
+        ->groupBy('book_id', 'book_title') // Include book_title in the GROUP BY
+        ->orderByDesc('loan_count')
+        ->take(5) // Limit to the top 5 results
+        ->get();
 
-        return view('welcome', compact('books'));
+        return view('welcome', compact('books', 'mostLoanedBook'));
     }
 }
