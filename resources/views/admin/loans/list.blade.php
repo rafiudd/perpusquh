@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container pt-5">
-        
+
         <div class="d-flex justify-content-between align-items-center">
             <div class="col-md-6">
                 <form action="/dashboard/loan-management/search" method="GET">
@@ -27,6 +27,7 @@
                         <th scope="col" class="text-center">NISN</th>
                         <th scope="col">Status</th>
                         <th scope="col" class="text-center">Jangka Waktu</th>
+                        <th scope="col" class="text-center">Denda</th>
                         <th scope="col" class="text-center">Tanggal Pengembalian</th>
                         <th class="text-center" scope="col">Aksi</th>
                         </tr>
@@ -42,18 +43,20 @@
                                 <td class="align-middle"><button disabled class="btn btn-outline-danger">{{ $loan['status'] }}</button></td>
                             @endif
                             <td id="loan-{{ $loan['id'] }}" class="align-middle text-center">{{ $loan['selisih'] }}</td>
+                            <td class="align-middle text-center">{{ $loan['denda'] }}</td>
                             <td class="align-middle text-center">{{ $loan['return_date'] }}</td>
                             <td class="">
                                 @if($loan['status'] == 'Sedang Dipinjam')
                                     <a href="/dashboard/loan-management/{{ $loan['id'] }}"><button class="btn btn-primary">Lihat Detail</button></a>
-                                    <a href="/dashboard/loan-management/approve/{{ $loan['id'] }}"><button class="btn btn-success">Kembalikan</button></a>
+                                    <a href="/dashboard/loan-management/approve/{{ $loan['id'] }}"><button class="btn btn-danger">Kembalikan</button></a>
                                 @else
                                     <a href="/dashboard/loan-management/{{ $loan['id'] }}"><button class="btn btn-primary">Lihat Detail</button></a>
+                                    <button disabled class="btn btn-danger">Kembalikan</button>
                                 @endif
                             </td>
                         </tr>
                         @endforeach
-                        @if(count($loans) < 1) 
+                        @if(count($loans) < 1)
                         <tr>
                             <td colspan=8 class="text-center align-middle pt-5 pb-5"><h5>Tidak Ada Peminjaman</h5></td>
                         </tr>

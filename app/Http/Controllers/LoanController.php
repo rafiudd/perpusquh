@@ -24,11 +24,19 @@ class LoanController extends Controller
             if ($days < 0) {
                 $timeDifference =  "Telat " . $days . " hari ";
             }
-           
+
             $loan['selisih'] = $timeDifference;
 
             if($loan['status'] == 'Telah Dikembalikan') {
                 $loan['selisih'] = '-';
+            }
+
+            if($days < 0) {
+                $loan['denda'] = "Rp. " . number_format(abs($days) * 20000,0,',','.');
+            }
+
+            if ($loan['selisih'] == '-') {
+                $loan['denda'] = 'Rp. 0';
             }
         }
 
@@ -57,7 +65,7 @@ class LoanController extends Controller
             'return_date' => $request->return_date
         ]);
 
-        for ($i=0; $i < count($request->book_id); $i++) { 
+        for ($i=0; $i < count($request->book_id); $i++) {
             $book = Book::where('id', '=', $request->book_id[$i])->first();
             $loan_items = LoanItem::Create([
                 'student_id' => $request->student_id,
@@ -108,15 +116,15 @@ class LoanController extends Controller
                 $currentTimestamp = time();
                 $createdTimestamp = strtotime($loan['return_date']);
                 $timeDifference = $createdTimestamp - $currentTimestamp;
-    
+
                 $days = floor($timeDifference / 86400);
                 $timeDifference = $days . " hari ";
                 if ($days < 0) {
                     $timeDifference =  "Telat " . $days . " hari ";
                 }
-               
+
                 $loan['selisih'] = $timeDifference;
-    
+
                 if($loan['status'] == 'Telah Dikembalikan') {
                     $loan['selisih'] = '-';
                 }
@@ -157,7 +165,7 @@ class LoanController extends Controller
             if ($days < 0) {
                 $timeDifference =  "Telat " . $days . " hari ";
             }
-           
+
             $loan['selisih'] = $timeDifference;
 
             if($loan['status'] == 'Telah Dikembalikan') {
@@ -166,7 +174,7 @@ class LoanController extends Controller
         }
 
         $list = array();
-        for ($i=0; $i < count($data); $i++) { 
+        for ($i=0; $i < count($data); $i++) {
             $ids = [];
 
             foreach ($data[$i]['loan_items'] as $item) {
