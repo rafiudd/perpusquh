@@ -26,7 +26,7 @@
                     <tbody>
                         @foreach ($books as $key=>$book)
                         <tr>
-                            <td class="align-middle">{{ $book['title'] }}</td>
+                            <td class="align-middle"><a href="book/{{$book['title']}}">{{ $book['title'] }}</a></td>
                             <td class="align-middle">{{ $book['author'] }}</td>
                             <td class="align-middle">{{ $book['publisher'] }}</td>
                             <td class="align-middle">{{ $book['total_pages'] }}</td>

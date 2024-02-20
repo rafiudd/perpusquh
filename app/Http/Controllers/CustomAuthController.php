@@ -96,12 +96,28 @@ class CustomAuthController extends Controller
 
     public function welcome() {
         $books = Book::orderBy('title', 'ASC')->paginate(8);
-        $mostLoanedBook = LoanItem::select('book_id', 'book_title', \DB::raw('COUNT(loan_id) as loan_count'))
-        ->groupBy('book_id', 'book_title') // Include book_title in the GROUP BY
-        ->orderByDesc('loan_count')
-        ->take(5) // Limit to the top 5 results
-        ->get();
+        $mostLoanedBook = LoanItem::select('loans_items.book_id', 'books.title', 'books.cover_image', \DB::raw('COUNT(loans_items.loan_id) as loan_count'))
+            ->join('books', 'loans_items.book_id', '=', 'books.id')
+            ->groupBy('loans_items.book_id', 'books.title', 'books.cover_image')
+            ->orderByDesc('loan_count')
+            ->take(3)
+            ->get();
 
-        return view('welcome', compact('books', 'mostLoanedBook'));
+        $newBooks = LoanItem::select('loans_items.book_id', 'books.title', 'books.cover_image', 'books.created_at', \DB::raw('COUNT(loans_items.loan_id) as loan_count'))
+            ->join('books', 'loans_items.book_id', '=', 'books.id')
+            ->groupBy('loans_items.book_id', 'books.title', 'books.cover_image', 'books.created_at')
+            ->orderByDesc('created_at')
+            ->take(3)
+            ->get();
+
+        return view('welcome', compact('books', 'mostLoanedBook', 'newBooks'));
+    }
+
+    public function getDetail(Request $request) {
+        $title = $request->title;
+
+        $books = Book::where('title', '=', $title)->get();
+
+        return view('book-detail', compact('books'));
     }
 }

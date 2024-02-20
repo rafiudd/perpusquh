@@ -62,9 +62,9 @@
     </div> -->
     <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <img width=80 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo">
-        <span class="fs-5">Sistem Informasi Perpustakaan <br> SDN 2 Wlahar</span>
+      <a style="background: #0d6efd; border-radius: 10px; padding: 10px; color:white;" href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <img width=80 src="https://smpn1jatinegara.sch.id/wp-content/uploads/2020/10/logo-kemdikbud-ori-300x300.png" alt="logo">
+        <span style="color: white; margin-left: 10px;" class="fs-5">Sistem Informasi Perpustakaan <br> SDN 2 Wlahar</span>
       </a>
 
       <ul class="nav nav-pills justify-content-center align-items-center">

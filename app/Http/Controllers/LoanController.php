@@ -32,12 +32,12 @@ class LoanController extends Controller
             }
 
             if($days < 0) {
-                $loan['denda'] = "Rp. " . number_format(abs($days) * 20000,0,',','.');
+                $loan['denda'] = "Rp. " . number_format(abs($days) * count($loan['loan_items']) * 20000,0,',','.');
             }
 
-            if ($loan['selisih'] == '-') {
-                $loan['denda'] = 'Rp. 0';
-            }
+            // if ($loan['selisih'] == '-') {
+            //     $loan['denda'] = 'Rp. 0';
+            // }
         }
 
         return view('admin.loans.list', compact('loans'));
@@ -136,6 +136,7 @@ class LoanController extends Controller
 
     public function approve(Request $request) {
         $loan_id = $request->loan_id;
+        $loans = Loan::where('id', '=', $loan_id)->get();
         $loan_items = LoanItem::where('loan_id', '=', $loan_id)->get();
 
         foreach ($loan_items as $loan_item) {
@@ -147,7 +148,8 @@ class LoanController extends Controller
         }
 
         Loan::find($loan_id)->update([
-            'status' => 'Telah Dikembalikan'
+            'status' => 'Telah Dikembalikan',
+            'updated_at' => $loans[0]['updated_at']
         ]);
         return redirect('/dashboard/loan-management');
     }
