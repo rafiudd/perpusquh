@@ -12,7 +12,9 @@ class Loan extends Model
         'student_id',
         'status',
         'note',
-        'return_date'
+        'return_date',
+        'returned_date',
+        'penalty_price'
     ];
 
     public function student() {

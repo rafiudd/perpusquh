@@ -19,20 +19,38 @@ class LoanController extends Controller
             $createdTimestamp = strtotime($loan['return_date']);
             $timeDifference = $createdTimestamp - $currentTimestamp;
 
-            $days = floor($timeDifference / 86400);
-            $timeDifference = $days . " hari ";
-            if ($days < 0) {
-                $timeDifference =  "Telat " . $days . " hari ";
-            }
+            if($loan['status'] == 'Sedang Dipinjam') {
+                $days = floor($timeDifference / 86400);
+                $timeDifference = $days . " hari ";
+                if ($days < 0) {
+                    $timeDifference =  "Telat " . $days . " hari ";
+                }
 
-            $loan['selisih'] = $timeDifference;
+                $loan['selisih'] = $timeDifference;
 
-            if($loan['status'] == 'Telah Dikembalikan') {
-                $loan['selisih'] = '-';
-            }
+                if($loan['status'] == 'Telah Dikembalikan') {
+                    $loan['selisih'] = '-';
+                }
 
-            if($days < 0) {
-                $loan['denda'] = "Rp. " . number_format(abs($days) * count($loan['loan_items']) * 20000,0,',','.');
+                if($days < 0) {
+                    $loan['denda'] = "Rp. " . number_format(abs($days) * count($loan['loan_items']) * 20000,0,',','.');
+                }
+            } else {
+                $createdTimestamp = strtotime($loan['returned_date']);
+                $timeDifference = $createdTimestamp - $currentTimestamp;
+                $days = floor($timeDifference / 86400);
+                $timeDifference = $days . " hari ";
+                if ($days < 0) {
+                    $timeDifference =  "Telat " . $days . " hari ";
+                }
+
+                $loan['selisih'] = $timeDifference;
+
+                if($days < 0 && $loan['penalty_price']) {
+                    $loan['denda'] = "Rp. " . $loan['penalty_price'];
+                } else {
+                    $loan['selisih'] = "";
+                }
             }
 
             // if ($loan['selisih'] == '-') {
@@ -62,7 +80,9 @@ class LoanController extends Controller
             'student_id' => $request->student_id,
             'status' => 'Sedang Dipinjam',
             'note' => $request->note,
-            'return_date' => $request->return_date
+            'return_date' => $request->return_date,
+            'returned_date' => $request->return_date,
+            'penalty_price' => "0"
         ]);
 
         for ($i=0; $i < count($request->book_id); $i++) {
@@ -147,10 +167,25 @@ class LoanController extends Controller
             ]);
         }
 
-        Loan::find($loan_id)->update([
+        $currentTimestamp = time();
+        $createdTimestamp = strtotime($loans[0]['return_date']);
+        $timeDifference = $createdTimestamp - $currentTimestamp;
+
+        $days = floor($timeDifference / 86400);
+
+        if($days < 0) {
+            $loans[0]['denda'] = strval(abs($days) * count($loan_items) * 20000);
+        }
+
+        $update = Loan::find($loan_id)->update([
             'status' => 'Telah Dikembalikan',
-            'updated_at' => $loans[0]['updated_at']
+            'updated_at' => $loans[0]['updated_at'],
+            'returned_date' => $loans[0]['updated_at'],
+            'penalty_price' => $loans[0]['denda']
         ]);
+
+        // dd($update, $loans[0]['denda']);
+
         return redirect('/dashboard/loan-management');
     }
 
